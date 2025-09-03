@@ -1,0 +1,73 @@
+PROJECT TITLE
+
+“Shram Daan: Mobile App Connecting Volunteers with Community Projects”
+
+INTRODUCTION
+Shram Daan is a community-focused mobile app that connects volunteers with local social and
+environmental initiatives. It facilitates easy discovery, coordination, and participation in voluntary
+labor projects such as cleanups, tree planting, school painting, temple restoration, and more. By
+streamlining communication, scheduling, and volunteer recognition, Shram Daan empowers
+communities to unite, contribute meaningfully, and promote self-reliance through collective action
+
+Scope and Objectives:
+The aim of this project is to develop a mobile application that enables individuals to participate in and
+organize community service projects (Shram Daan). The app will foster self-reliance and civic unity by
+helping volunteers find, join, and manage local development efforts.
+Objectives:
+• Allow users to post and discover nearby volunteer-based social projects.
+• Provide tools for project scheduling, reminders, and coordination.
+• Promote community involvement through recognition and rewards.
+• Encourage participation via simple, user-friendly mobile interface.
+
+PROBLEM STATEMENT:
+Despite the willingness of many individuals to contribute time and effort for public good, there is
+no streamlined system to connect community members and organize voluntary labor efforts. This
+
+gap results in underutilized manpower, delayed public works, and missed opportunities for self-
+driven development.
+
+Many communities in both rural and urban areas lack basic infrastructure not due to a lack of
+funding, but because of the absence of effective coordination and communication tools that can
+bring willing volunteers together efficiently.
+While social media platforms are often used to call for volunteers, these posts are frequently missed
+in users’ feeds or discovered after the event has ended, limiting participation. Additionally, people
+interested in volunteering may not find any suitable events during their free time, and often come
+across opportunities only when they are already occupied.
+
+Existing event listing apps like Meetup or similar platforms are overloaded with unrelated events,
+making it difficult for users to discover relevant volunteer opportunities. This highlights the need
+for a dedicated, domain-specific platform that focuses solely on community service and voluntary
+labor projects.
+
+PROPOSED SOLUTION:
+To address the lack of coordination and visibility in community volunteering efforts, we propose
+developing a dedicated mobile application called Shram Daan (श्रमदान). This platform will serve
+as a centralized, community-focused hub for organizing, discovering, and participating in
+voluntary labor (Shram Daan) projects.
+Key Features of the Solution:
+• Location-Based Project Discovery: Volunteers can easily find nearby community projects
+based on real-time location.
+• Event Scheduling and Reminders: Users can view event dates, set reminders, and sync
+activities with their calendar.
+• Essential Tools List & Benefits Info: Each project will list required tools and
+complimentary support (e.g., water/snacks).
+• In-App Chat & Notifications: Organizers and participants can communicate seamlessly
+and receive timely updates.
+• RSVP and Participation Tracking: Volunteers can confirm attendance and get recognized
+for their contributions.
+• Leaderboards & Rewards: High-performing contributors receive badges, certificates, or
+digital tokens.
+• Social Media Integration: Users can share projects or their participation to boost
+community awareness and involvement.
+Technologies to Be Used:
+• Frontend: React native (for cross-platform mobile development)
+• Backend: Firebase (Firestore, Auth, Cloud Messaging)
+• APIs: Open street API for geolocation features
+• Notifications: Firebase Cloud Messaging (push alerts and reminders)
+
+What Makes This Solution Unique:
+• Unlike general-purpose platforms like Meetup, Shram Daan is laser-focused on community
+volunteering, cutting through irrelevant content.
+• It bridges the gap between intent and action by notifying users when events match their
+availability and location.
+• It creates a culture of contribution by offering recognition, visibility,
