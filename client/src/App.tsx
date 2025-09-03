@@ -10,6 +10,9 @@ import Home from "@/pages/Home";
 import ProjectDetails from "@/pages/ProjectDetails";
 import Profile from "@/pages/Profile";
 import CreateProject from "@/pages/CreateProject";
+import Messages from "@/pages/Messages";
+import Discover from "@/pages/Discover";
+import Leaderboard from "@/pages/Leaderboard";
 
 function Router() {
   const { isAuthenticated, isLoading } = useAuth();
@@ -21,9 +24,12 @@ function Router() {
       ) : (
         <>
           <Route path="/" component={Home} />
+          <Route path="/discover" component={Discover} />
           <Route path="/project/:id" component={ProjectDetails} />
           <Route path="/profile" component={Profile} />
           <Route path="/create" component={CreateProject} />
+          <Route path="/messages" component={Messages} />
+          <Route path="/leaderboard" component={Leaderboard} />
         </>
       )}
       <Route component={NotFound} />

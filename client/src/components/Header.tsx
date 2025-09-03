@@ -33,6 +33,12 @@ export default function Header({ location }: HeaderProps) {
         </div>
       </div>
       <div className="flex items-center space-x-3">
+        <button 
+          onClick={() => setLocation('/leaderboard')}
+          data-testid="button-leaderboard"
+        >
+          <i className="fas fa-trophy text-xl text-muted-foreground"></i>
+        </button>
         <button className="relative" data-testid="button-notifications">
           <i className="fas fa-bell text-xl text-muted-foreground"></i>
           {unreadCount > 0 && (

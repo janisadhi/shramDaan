@@ -18,7 +18,7 @@ export default function BottomNavigation({ activeTab }: BottomNavigationProps) {
       id: 'discover' as const,
       icon: 'fas fa-search',
       label: 'Discover',
-      path: '/', // For now, same as home with search
+      path: '/discover',
     },
     {
       id: 'create' as const,
@@ -31,7 +31,7 @@ export default function BottomNavigation({ activeTab }: BottomNavigationProps) {
       id: 'messages' as const,
       icon: 'fas fa-comment',
       label: 'Messages',
-      path: '/', // TODO: Implement messages page
+      path: '/messages',
       hasNotification: true,
     },
     {
