@@ -10,14 +10,14 @@ interface ProjectCardProps {
 export default function ProjectCard({ project }: ProjectCardProps) {
   const [, setLocation] = useLocation();
 
-  const formatDate = (dateTime: string) => {
+  const formatDate = (dateTime: string | Date) => {
     return new Date(dateTime).toLocaleDateString('en-US', {
       month: 'short',
       day: 'numeric'
     });
   };
 
-  const formatTime = (dateTime: string) => {
+  const formatTime = (dateTime: string | Date) => {
     return new Date(dateTime).toLocaleTimeString('en-US', {
       hour: 'numeric',
       minute: '2-digit',
@@ -97,7 +97,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
             <div className="flex -space-x-2">
               {project.rsvps.slice(0, 3).map((rsvp) => (
                 <Avatar key={rsvp.id} className="w-6 h-6 border-2 border-card">
-                  <AvatarImage src={rsvp.user.profileImageUrl} />
+                  <AvatarImage src={rsvp.user.profileImageUrl || undefined} />
                   <AvatarFallback className="text-xs">
                     {rsvp.user.firstName?.[0]}{rsvp.user.lastName?.[0]}
                   </AvatarFallback>
@@ -120,7 +120,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
         {/* Organizer Info */}
         <div className="flex items-center mt-3 pt-3 border-t border-border">
           <Avatar className="w-6 h-6 mr-2">
-            <AvatarImage src={project.organizer.profileImageUrl} />
+            <AvatarImage src={project.organizer.profileImageUrl || undefined} />
             <AvatarFallback className="text-xs">
               {project.organizer.firstName?.[0]}{project.organizer.lastName?.[0]}
             </AvatarFallback>

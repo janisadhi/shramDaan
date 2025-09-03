@@ -209,11 +209,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.post('/api/projects/:id/messages', isAuthenticated, async (req: any, res) => {
     try {
       const userId = req.user.claims.sub;
-      const messageData = createMessageSchema.parse({
+      const messageData = {
         ...req.body,
         projectId: req.params.id,
         senderId: userId,
-      });
+      };
 
       const message = await storage.createMessage(messageData);
       res.status(201).json(message);

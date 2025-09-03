@@ -113,12 +113,12 @@ export default function ProjectDetails() {
     );
   }
 
-  const isUserRegistered = project.rsvps.some(rsvp => rsvp.userId === user?.id);
+  const isUserRegistered = user ? project.rsvps.some(rsvp => rsvp.userId === (user as any).id) : false;
   const progressPercentage = project.maxVolunteers 
     ? (project._count.rsvps / project.maxVolunteers) * 100 
     : 0;
 
-  const formatDate = (dateTime: string) => {
+  const formatDate = (dateTime: string | Date) => {
     return new Date(dateTime).toLocaleDateString('en-US', {
       year: 'numeric',
       month: 'long',
@@ -126,7 +126,7 @@ export default function ProjectDetails() {
     });
   };
 
-  const formatTime = (dateTime: string) => {
+  const formatTime = (dateTime: string | Date) => {
     return new Date(dateTime).toLocaleTimeString('en-US', {
       hour: 'numeric',
       minute: '2-digit',
@@ -200,7 +200,7 @@ export default function ProjectDetails() {
           <div className="bg-muted/30 rounded-lg p-4 mb-4">
             <div className="flex items-center space-x-3">
               <Avatar>
-                <AvatarImage src={project.organizer.profileImageUrl} />
+                <AvatarImage src={project.organizer.profileImageUrl || undefined} />
                 <AvatarFallback>
                   {project.organizer.firstName?.[0]}{project.organizer.lastName?.[0]}
                 </AvatarFallback>
@@ -266,7 +266,7 @@ export default function ProjectDetails() {
             <div className="flex flex-wrap gap-2">
               {project.rsvps.slice(0, 10).map((rsvp) => (
                 <Avatar key={rsvp.id} className="w-10 h-10">
-                  <AvatarImage src={rsvp.user.profileImageUrl} />
+                  <AvatarImage src={rsvp.user.profileImageUrl || undefined} />
                   <AvatarFallback>
                     {rsvp.user.firstName?.[0]}{rsvp.user.lastName?.[0]}
                   </AvatarFallback>
@@ -324,7 +324,7 @@ export default function ProjectDetails() {
             <Button
               className="w-full bg-gradient-to-r from-primary to-primary/80 text-primary-foreground hover:from-primary/90 hover:to-primary/70"
               onClick={() => rsvpMutation.mutate()}
-              disabled={rsvpMutation.isPending || (project.maxVolunteers && project._count.rsvps >= project.maxVolunteers)}
+              disabled={rsvpMutation.isPending || Boolean(project.maxVolunteers && project._count.rsvps >= project.maxVolunteers)}
               data-testid="button-join-project"
             >
               <div className="flex items-center justify-center space-x-2">

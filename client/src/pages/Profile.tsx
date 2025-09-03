@@ -32,7 +32,7 @@ export default function Profile() {
     enabled: isAuthenticated,
   });
 
-  const { data: recentRsvps = [] } = useQuery({
+  const { data: recentRsvps = [] } = useQuery<any[]>({
     queryKey: ['/api/user/rsvps'],
     enabled: isAuthenticated,
   });
@@ -122,7 +122,7 @@ export default function Profile() {
           <div className="relative z-10 text-center">
             {/* Profile Image */}
             <Avatar className="w-24 h-24 mx-auto mb-4 border-4 border-white/20">
-              <AvatarImage src={profile.profileImageUrl} />
+              <AvatarImage src={profile.profileImageUrl || undefined} />
               <AvatarFallback className="bg-white/20 text-white text-2xl">
                 {profile.firstName?.[0]}{profile.lastName?.[0]}
               </AvatarFallback>

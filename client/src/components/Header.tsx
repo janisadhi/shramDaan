@@ -49,9 +49,9 @@ export default function Header({ location }: HeaderProps) {
           data-testid="button-profile"
         >
           <Avatar className="w-10 h-10 border-2 border-primary/20">
-            <AvatarImage src={user?.profileImageUrl} />
+            <AvatarImage src={(user as any)?.profileImageUrl || undefined} />
             <AvatarFallback>
-              {user?.firstName?.[0]}{user?.lastName?.[0]}
+              {(user as any)?.firstName?.[0]}{(user as any)?.lastName?.[0]}
             </AvatarFallback>
           </Avatar>
         </button>

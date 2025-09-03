@@ -119,42 +119,36 @@ export class DatabaseStorage implements IStorage {
   }
 
   async getProjects(filters?: { category?: string; search?: string; userId?: string }): Promise<ProjectWithDetails[]> {
-    let query = db
+    let whereConditions = [eq(projects.isActive, true)];
+
+    if (filters?.category && filters.category !== 'all') {
+      whereConditions.push(eq(projects.category, filters.category as any));
+    }
+
+    if (filters?.search) {
+      const searchCondition = or(
+        ilike(projects.title, `%${filters.search}%`),
+        ilike(projects.description, `%${filters.search}%`),
+        ilike(projects.location, `%${filters.search}%`)
+      );
+      if (searchCondition) {
+        whereConditions.push(searchCondition);
+      }
+    }
+
+    if (filters?.userId) {
+      whereConditions.push(eq(projects.organizerId, filters.userId));
+    }
+
+    const results = await db
       .select({
         project: projects,
         organizer: users,
       })
       .from(projects)
       .leftJoin(users, eq(projects.organizerId, users.id))
-      .where(eq(projects.isActive, true))
+      .where(and(...whereConditions))
       .orderBy(desc(projects.createdAt));
-
-    if (filters?.category && filters.category !== 'all') {
-      query = query.where(and(
-        eq(projects.isActive, true),
-        eq(projects.category, filters.category as any)
-      ));
-    }
-
-    if (filters?.search) {
-      query = query.where(and(
-        eq(projects.isActive, true),
-        or(
-          ilike(projects.title, `%${filters.search}%`),
-          ilike(projects.description, `%${filters.search}%`),
-          ilike(projects.location, `%${filters.search}%`)
-        )
-      ));
-    }
-
-    if (filters?.userId) {
-      query = query.where(and(
-        eq(projects.isActive, true),
-        eq(projects.organizerId, filters.userId)
-      ));
-    }
-
-    const results = await query;
 
     // Get RSVPs for each project
     const projectsWithDetails = await Promise.all(
